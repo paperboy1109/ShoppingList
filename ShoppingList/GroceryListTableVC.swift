@@ -31,7 +31,7 @@ class GroceryListTableVC: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        managedObjectContext = appDelegate.persistentContainer.viewContext
+        managedObjectContext = appDelegate.coreDataStack.persistentContainer.viewContext
         
         fetchData()
     }
