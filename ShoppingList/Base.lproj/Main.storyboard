@@ -39,7 +39,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Shopping List" id="icf-I7-MLa">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="7Ht-z9-GU8"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="7Ht-z9-GU8">
+                            <connections>
+                                <action selector="addTapped:" destination="ikm-kb-lL9" id="Sn4-RB-QpT"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6uz-9C-mSz" userLabel="First Responder" sceneMemberID="firstResponder"/>

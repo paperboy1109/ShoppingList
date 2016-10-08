@@ -9,6 +9,13 @@
 import UIKit
 
 class GroceryListTableVC: UITableViewController {
+    
+    // MARK: - Properties 
+    
+    var shoppingItemsList = [String]()
+    let REUSE_IDENTIFIER = "shoppingListItemCell"
+    
+    // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,33 +26,60 @@ class GroceryListTableVC: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
+    
+    // MARK: - Actions
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func addTapped(_ sender: UIBarButtonItem) {
+        
+        let alertController = UIAlertController(title: "New Item for the Shopping List", message: "Add an item?", preferredStyle: UIAlertControllerStyle.alert)
+        
+        alertController.addTextField() { textField in
+            
+        }
+        
+        /* Create the alert actions/ options for the user */
+        let addItemAction = UIAlertAction(title: "Add", style: UIAlertActionStyle.default) { [weak self] (action: UIAlertAction) in
+            
+            let alertControllerTextField = alertController.textFields?.first
+            
+            self?.shoppingItemsList.append(alertControllerTextField!.text!)
+            self?.tableView.reloadData()
+            
+        }
+        
+        let cancelAcion = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil)
+        
+        alertController.addAction(addItemAction)
+        alertController.addAction(cancelAcion)
+        
+        present(alertController, animated: true, completion: nil)
     }
+    
+
+
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return shoppingItemsList.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: REUSE_IDENTIFIER, for: indexPath)
 
-        // Configure the cell...
+        cell.textLabel?.text = self.shoppingItemsList[indexPath.row]
 
         return cell
     }
-    */
+ 
 
     /*
     // Override to support conditional editing of the table view.
