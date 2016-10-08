@@ -14,7 +14,7 @@ class GroceryListTableVC: UITableViewController {
     
     // MARK: - Properties 
     
-    var shoppingItemsList = [NSManagedObject]()
+    var shoppingItemsList = [ShoppingItem]()
     let REUSE_IDENTIFIER = "shoppingListItemCell"
     
     var managedObjectContext: NSManagedObjectContext?
@@ -49,12 +49,23 @@ class GroceryListTableVC: UITableViewController {
         /* Create the alert actions/ options for the user */
         let addItemAction = UIAlertAction(title: "Add", style: UIAlertActionStyle.default) { [weak self] (action: UIAlertAction) in
             
-            let alertControllerTextField = alertController.textFields?.first
+//            let alertControllerTextField = alertController.textFields?.first
+//            
+//            let entity = NSEntityDescription.entity(forEntityName: "ShoppingItem", in: (self?.managedObjectContext)!)
+//            
+//            let item = NSManagedObject(entity: entity!, insertInto: self?.managedObjectContext)
+//            item.setValue(alertControllerTextField!.text!, forKey: "name")
             
-            let entity = NSEntityDescription.entity(forEntityName: "ShoppingItem", in: (self?.managedObjectContext)!)
+            let itemNameString: String?
             
-            let item = NSManagedObject(entity: entity!, insertInto: self?.managedObjectContext)
-            item.setValue(alertControllerTextField!.text!, forKey: "name")
+            if alertController.textFields?.first?.text != "" {
+                itemNameString = alertController.textFields?.first?.text
+            } else {
+                return
+            }
+            
+            let shoppingItemEntity = ShoppingItem(context: (self?.managedObjectContext)!)
+            shoppingItemEntity.name = itemNameString
             
             /* Persist the data */
             do {
@@ -80,7 +91,8 @@ class GroceryListTableVC: UITableViewController {
     // MARK: - Helpers
     func fetchData() {
         
-        let fetchRequest: NSFetchRequest<NSManagedObject> = NSFetchRequest(entityName: "ShoppingItem")
+        // let fetchRequest: NSFetchRequest<NSManagedObject> = NSFetchRequest(entityName: "ShoppingItem")
+        let fetchRequest: NSFetchRequest<ShoppingItem> = ShoppingItem.fetchRequest()
         
         /* Get the result of the fetch request */
         
@@ -118,7 +130,8 @@ class GroceryListTableVC: UITableViewController {
         
         let shoppingItem = self.shoppingItemsList[indexPath.row]
 
-        cell.textLabel?.text = shoppingItem.value(forKey: "name") as? String
+        // cell.textLabel?.text = shoppingItem.value(forKey: "name") as? String
+        cell.textLabel?.text = shoppingItem.name
 
         return cell
     }

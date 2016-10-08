@@ -13,6 +13,8 @@
 		4EB585C61DA869DC00BC824D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4EB585C51DA869DC00BC824D /* Assets.xcassets */; };
 		4EB585C91DA869DC00BC824D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EB585C71DA869DC00BC824D /* LaunchScreen.storyboard */; };
 		4EB585D11DA86B7200BC824D /* GroceryListTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB585D01DA86B7200BC824D /* GroceryListTableVC.swift */; };
+		4EB585F91DA926FA00BC824D /* ShoppingItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB585F71DA926FA00BC824D /* ShoppingItem+CoreDataClass.swift */; };
+		4EB585FA1DA926FA00BC824D /* ShoppingItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB585F81DA926FA00BC824D /* ShoppingItem+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		4EB585C81DA869DC00BC824D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4EB585CA1DA869DC00BC824D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4EB585D01DA86B7200BC824D /* GroceryListTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroceryListTableVC.swift; sourceTree = "<group>"; };
+		4EB585F71DA926FA00BC824D /* ShoppingItem+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ShoppingItem+CoreDataClass.swift"; path = "../ShoppingItem+CoreDataClass.swift"; sourceTree = "<group>"; };
+		4EB585F81DA926FA00BC824D /* ShoppingItem+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ShoppingItem+CoreDataProperties.swift"; path = "../ShoppingItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +82,8 @@
 		4EB585D31DA87F2300BC824D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4EB585F71DA926FA00BC824D /* ShoppingItem+CoreDataClass.swift */,
+				4EB585F81DA926FA00BC824D /* ShoppingItem+CoreDataProperties.swift */,
 				4EB585C21DA869DC00BC824D /* ShoppingList.xcdatamodeld */,
 			);
 			name = Model;
@@ -156,6 +162,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4EB585FA1DA926FA00BC824D /* ShoppingItem+CoreDataProperties.swift in Sources */,
+				4EB585F91DA926FA00BC824D /* ShoppingItem+CoreDataClass.swift in Sources */,
 				4EB585D11DA86B7200BC824D /* GroceryListTableVC.swift in Sources */,
 				4EB585C41DA869DC00BC824D /* ShoppingList.xcdatamodeld in Sources */,
 				4EB585BC1DA869DC00BC824D /* AppDelegate.swift in Sources */,
@@ -320,6 +328,7 @@
 				4EB585CF1DA869DC00BC824D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
