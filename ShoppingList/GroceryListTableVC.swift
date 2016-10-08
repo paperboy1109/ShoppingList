@@ -7,13 +7,17 @@
 //
 
 import UIKit
+import CoreData
+
 
 class GroceryListTableVC: UITableViewController {
     
     // MARK: - Properties 
     
-    var shoppingItemsList = [String]()
+    var shoppingItemsList = [NSManagedObject]()
     let REUSE_IDENTIFIER = "shoppingListItemCell"
+    
+    var managedObjectContext: NSManagedObjectContext?
     
     // MARK: - Lifecycle
 
@@ -25,6 +29,11 @@ class GroceryListTableVC: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        managedObjectContext = appDelegate.persistentContainer.viewContext
+        
+        fetchData()
     }
     
     // MARK: - Actions
@@ -42,8 +51,21 @@ class GroceryListTableVC: UITableViewController {
             
             let alertControllerTextField = alertController.textFields?.first
             
-            self?.shoppingItemsList.append(alertControllerTextField!.text!)
-            self?.tableView.reloadData()
+            let entity = NSEntityDescription.entity(forEntityName: "ShoppingItem", in: (self?.managedObjectContext)!)
+            
+            let item = NSManagedObject(entity: entity!, insertInto: self?.managedObjectContext)
+            item.setValue(alertControllerTextField!.text!, forKey: "name")
+            
+            /* Persist the data */
+            do {
+                
+                try self?.managedObjectContext?.save()
+                
+            } catch {
+                fatalError("Failed to persist new data")
+            }
+            
+            self?.fetchData()
             
         }
         
@@ -55,6 +77,25 @@ class GroceryListTableVC: UITableViewController {
         present(alertController, animated: true, completion: nil)
     }
     
+    // MARK: - Helpers
+    func fetchData() {
+        
+        let fetchRequest: NSFetchRequest<NSManagedObject> = NSFetchRequest(entityName: "ShoppingItem")
+        
+        /* Get the result of the fetch request */
+        
+        do {
+            
+            let fetchResults = try managedObjectContext?.fetch(fetchRequest)
+            
+            shoppingItemsList = fetchResults!
+            
+            tableView.reloadData()
+            
+        } catch {
+            fatalError("Unable to fetch the shopping list items")
+        }
+    }
 
 
 
@@ -74,8 +115,10 @@ class GroceryListTableVC: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: REUSE_IDENTIFIER, for: indexPath)
+        
+        let shoppingItem = self.shoppingItemsList[indexPath.row]
 
-        cell.textLabel?.text = self.shoppingItemsList[indexPath.row]
+        cell.textLabel?.text = shoppingItem.value(forKey: "name") as? String
 
         return cell
     }

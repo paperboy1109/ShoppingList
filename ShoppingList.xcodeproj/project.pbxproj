@@ -56,15 +56,31 @@
 		4EB585BA1DA869DC00BC824D /* ShoppingList */ = {
 			isa = PBXGroup;
 			children = (
+				4EB585D31DA87F2300BC824D /* Model */,
+				4EB585D21DA87F1A00BC824D /* Controller */,
 				4EB585BB1DA869DC00BC824D /* AppDelegate.swift */,
 				4EB585BF1DA869DC00BC824D /* Main.storyboard */,
 				4EB585C51DA869DC00BC824D /* Assets.xcassets */,
 				4EB585C71DA869DC00BC824D /* LaunchScreen.storyboard */,
 				4EB585CA1DA869DC00BC824D /* Info.plist */,
-				4EB585C21DA869DC00BC824D /* ShoppingList.xcdatamodeld */,
-				4EB585D01DA86B7200BC824D /* GroceryListTableVC.swift */,
 			);
 			path = ShoppingList;
+			sourceTree = "<group>";
+		};
+		4EB585D21DA87F1A00BC824D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4EB585D01DA86B7200BC824D /* GroceryListTableVC.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		4EB585D31DA87F2300BC824D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4EB585C21DA869DC00BC824D /* ShoppingList.xcdatamodeld */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
